@@ -29,4 +29,4 @@ Describe and show how to run the tests with code examples.
 # How to USe
 If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 # License
-[![Foo](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/440px-MIT_logo.svg.png)]
+MIT License
