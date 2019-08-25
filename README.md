@@ -29,4 +29,4 @@ Describe and show how to run the tests with code examples.
 # How to USe
 If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 # License
-![start_caQtDM_7id.sh](./start_caQtDM_7id.sh) 
+![LICENSE]
