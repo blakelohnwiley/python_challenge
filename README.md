@@ -30,3 +30,6 @@ Describe and show how to run the tests with code examples.
 If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 # License
 ![LICENSE](LICENSE) 
+[<img src="http://www.google.com.au/images/nav_logo7.png">](http://google.com.au/)
+
+[![Foo](http://www.google.com.au/images/nav_logo7.png)](http://google.com.au/)
