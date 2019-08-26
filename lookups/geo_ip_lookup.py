@@ -1,11 +1,13 @@
-import requests
 import json
-from utilities import argparser
-# This file contains the required fuction to perform a geo ip lookup
-# The function takes an IP address as input, will perform a GET request to freegeoip.app and parse the output as a python dictionary
 
+import requests
+
+from utilities import argparser
+
+
+# given an ip address grab geograhical information about it
 def geo_ip_query(ip_address):
-     """
+    '''
     Summary line.
     Gets geolocation information about an ip address.
     by the user. 
@@ -21,8 +23,8 @@ def geo_ip_query(ip_address):
     None : None 
     Description of return value
     Attempts to return quuery from https://freegeoip.app/json/<ip address>.
-    If query returns nothing, then returns none. 
-    """
+    If query returns nothing, then returns none.
+    '''
     # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
     # go to this url

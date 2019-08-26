@@ -2,7 +2,7 @@ import re
 
 # parse the text and check for regex pattern of ip address. 
 def parse(ip_text):
-    """
+    '''
     Summary line.
     Searches for a regular expression pattern that matches an ip address. 
 
@@ -16,14 +16,13 @@ def parse(ip_text):
     list_of_ips : list
     Description of return value
     Returns a list of all ip addresses that matches with the regex pattern. 
-    """
-    # creates an arg variable, makes args attributes available within function.
+    '''
     list_of_ips=re.findall('[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+', ip_text)
     return(list_of_ips)
 
 # convert input file into data
 def file_to_text(file_name):
-    """
+    '''
     Summary line.
     Opens the input file passed by flag -f.
 
@@ -39,7 +38,7 @@ def file_to_text(file_name):
     Description of return value
     Returns the opened file, if not able to open file.
     Tells user it's unable to open the file. 
-    """
+    '''
     # try to open file
     try:
         ip_file=open(file_name, 'r')
@@ -51,7 +50,7 @@ def file_to_text(file_name):
 
 # display results of sql query
 def display_dict(dictionary):
-        """
+    '''
     Summary line.
     Takes a dictionary as input and makes the sql query readable
     by the user. 
@@ -67,7 +66,7 @@ def display_dict(dictionary):
     Description of return value
     Returns the sql query in a readable format and outputs
     to the console. 
-    """
+    '''
     # iterate through each line in dictionary
     for line in dictionary:
         # get keys dictionary

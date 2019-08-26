@@ -1,10 +1,13 @@
-import requests
 import json
+
+import requests
+
 from utilities import argparser
+
 
 # perform the rdap query for ip address
 def rdap_query(ip_address):
-    """
+    '''
     Summary line.
     Gets rdap information about an ip address.
     by the user. 
@@ -21,7 +24,7 @@ def rdap_query(ip_address):
     Description of return value
     Attempts to return quuery from https://rdap.arin.net/registry/ip/<ip address>.
     If query returns nothing, then returns none. 
-    """
+    '''
     # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
     # go to this url
@@ -72,7 +75,7 @@ def rdap_query(ip_address):
 
 # extract specific information from query results
 def rdap_extract(query_response):
-    """
+    '''
     Summary line.
     Extracts specfic rdap information from rdap query.
     by the user. 
@@ -93,9 +96,8 @@ def rdap_extract(query_response):
     -endAddress
     -company_name
     -company_address
-    Otherwise returns None. 
-
-    """
+    Otherwise returns None.
+    '''
     # attempt to extract information from rdap_query, otherwise return None.
     try:
         temp_dict = {}

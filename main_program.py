@@ -1,15 +1,17 @@
+import os
+
+from tqdm import tqdm
+
 from lookups import geo_ip_lookup
 from lookups import rdap_lookup
 from parsing import parsing
 from sql import query_db
-import os
-from utilities import argparser 
-import time
-from tqdm import tqdm
+from utilities import argparser
+
 
 # inserts values into sql database
 def populate(file_name="list_of_ips.txt"):
-    """
+    '''
     Summary line.
     Populates the mysql database with queries returned from geo and rdap queries.
 
@@ -21,14 +23,13 @@ def populate(file_name="list_of_ips.txt"):
     Parameters
     ----------
     file_name : str
-        This is the filename of the text file. 
+    This is the filename of the text file.
 
     Returns
     -------
     None
-        Description of return value
-
-    """
+    Description of return value
+    '''
     # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
     # get current working directory 

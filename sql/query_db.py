@@ -2,11 +2,13 @@
 
 import pymysql
 import pymysql.cursors
+
 from utilities import argparser
+
 
 # meant to protect against sql injections, didn't have enough time to implement.
 def sql_injection(string):
-    """
+    '''
     Summary line.
     Test to see if sql database was vunderable to sql injections.  
 
@@ -19,10 +21,10 @@ def sql_injection(string):
     -------
     True: bool
     Description of return value
-    If sql injection was possible return boolean value of True. 
-    Otherwise, return boolean value of false.
+    If sql injection was possible return boolean value of False.
+    Otherwise, return boolean value of True..
 
-    """
+    '''
     s = [";","\"","+","*","/","%","$","--","^", "@","~","`","SELECT ", "UNION ","select", "union "]
     for i in s:
         if (i in str(string)):
@@ -31,7 +33,7 @@ def sql_injection(string):
 
 # connection to database
 def connect_to_database(host='localhost', user='swimlane', password='swimlane', db='swimlane'):
-    """
+    '''
     Summary line.
     Establish a connection to the sql database.   
 
@@ -51,8 +53,7 @@ def connect_to_database(host='localhost', user='swimlane', password='swimlane', 
     Description of return value
     This is the connection to the sql database. 
     If not connection is made then, return a system exit code of 1. 
-
-    """
+    '''
     # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
     # try to connect to db
@@ -73,7 +74,7 @@ def connect_to_database(host='localhost', user='swimlane', password='swimlane', 
 
 # pass along users SQL query to the database.
 def execute_query(query, cursor, connection):
-    """
+    '''
     Summary line.
     Execute a query from the users input and pass
     it along to the database.    
@@ -91,7 +92,7 @@ def execute_query(query, cursor, connection):
     Description of return value
     Create a new cursor to execute queries with.
     If no commit is made then, return a system exit code of 1. 
-    """
+    '''
     # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
     if args.debug == True:
@@ -113,7 +114,7 @@ def execute_query(query, cursor, connection):
 
 # query the databaes    
 def query_db(connection, query):
-     """
+    '''
     Summary line.
     Connect to database and attempt to xecute a query from the users input. 
 
@@ -131,7 +132,7 @@ def query_db(connection, query):
     The method fetches all (or all remaining) rows of a query result
     set and returns a list of tuples. If no more rows are available, 
     it returns an empty list
-    """
+    '''
     # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
     try:
