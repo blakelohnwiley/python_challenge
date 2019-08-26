@@ -1,13 +1,13 @@
-import lookups
 from lookups import geo_ip_lookup
 from lookups import rdap_lookup
-import parsing
 from parsing import parsing
-import sql
 from sql import query_db
 import os
+from progressbar import ProgressBar
+from utilities import argparser 
 
-def populate(file_name="list_of_ips.txt"):
+
+def populate(file_name):
 # The first step is to fetch the IP addresses inside the file and store them in an array.
     current_dir=os.getcwd()
     file_name=os.path.join(current_dir, "data", file_name)
@@ -21,7 +21,9 @@ def populate(file_name="list_of_ips.txt"):
 # We also need to connect to the database to insert the values as we perform the geo ip lookup
     connection_db=query_db.connect_to_database()
     query_db.execute_query("USE swimlane;", connection_db.cursor(), connection_db)
-    for ip in list_of_ips:
+    #init progress bar
+    pbar = ProgressBar()
+    for ip in pbar(list_of_ips):
         geo_info=geo_ip_lookup.geo_ip_query(ip)
 #        print(geo_info)
         if geo_info!=None:
@@ -79,10 +81,11 @@ def query_loop(connection):
     return(0)
 
 def main():
+    args = argparser.input_args()
     ask_populate=input("Do you want to initialize the database ? (yes/no)\n")
     if ask_populate=='yes':
         print("Populating the database. This operation may take a while.")
-        populate()
+        populate(args.filename)
         print("Population complete")
     else:
         print("Skipping the population phase")
