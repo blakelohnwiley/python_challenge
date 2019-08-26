@@ -13,6 +13,27 @@ This program will read a given set of IPs, perform Geo IP and RDAP lookups, and 
 - Utilities
 - Data
 
+# Structure
+├── data
+│   └── list_of_ips.txt
+├── LICENSE
+├── lookups
+│   ├── geo_ip_lookup.py
+│   └── rdap_lookup.py
+├── main_program.py
+├── parsing
+│   ├── __init__.py
+│   └── parsing.py
+├── README.md
+├── requirements.txt
+├── sql
+│   ├── init_db.sql
+│   ├── __init__.py
+│   ├── init_user.sql
+│   └── query_db.py
+└── utilities
+    ├── argparser.py
+    └── __init__.py
 ## Lookup
 This modlue contains both the geolocation and rdap query.
 ### Geolocation Query
