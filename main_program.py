@@ -7,7 +7,7 @@ from utilities import argparser
 import time
 from tqdm import tqdm
 
-def populate(file_name):
+def populate(file_name="list_of_ips.txt"):
 # The first step is to fetch the IP addresses inside the file and store them in an array.
     args = argparser.input_args()
     current_dir=os.getcwd()
