@@ -100,7 +100,7 @@ def populate(file_name="list_of_ips.txt"):
 
 # Allow user to retrieve information from database.
 def query_loop(connection):
-    """
+    '''
     Summary line.
     Allows user to query mysql database and retrieve associated information
     of each ip address or ip addresses. If the exit string is passed, closes
@@ -118,7 +118,7 @@ def query_loop(connection):
     The method fetches all (or all remaining) rows of a query result
     set and returns a list of tuples. If no more rows are available, 
     it returns an empty list. If the exit string is passed. 
-    """
+    '''
     # to prompt user
     user_input=""
     # will continue to iterate until recieves exit string.
