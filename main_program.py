@@ -3,27 +3,27 @@ from lookups import rdap_lookup
 from parsing import parsing
 from sql import query_db
 import os
-from progressbar import ProgressBar
 from utilities import argparser 
-
+import time
+from tqdm import tqdm
 
 def populate(file_name):
 # The first step is to fetch the IP addresses inside the file and store them in an array.
+    args = argparser.input_args()
     current_dir=os.getcwd()
     file_name=os.path.join(current_dir, "data", file_name)
-    
-    print("Opening file [", file_name, "]")
+    if args.debug == True:
+        print("Opening file [", file_name, "]")
     ip_text=parsing.file_to_text(file_name)
     list_of_ips=parsing.parse(ip_text)
-    
-    count=0
 # The second step is to execute the lookups on each IP of the array
 # We also need to connect to the database to insert the values as we perform the geo ip lookup
     connection_db=query_db.connect_to_database()
     query_db.execute_query("USE swimlane;", connection_db.cursor(), connection_db)
     #init progress bar
-    pbar = ProgressBar()
-    for ip in pbar(list_of_ips):
+    len_of_list = len(list_of_ips)
+    for i in tqdm(range(len_of_list)):
+        ip = list_of_ips[i]
         geo_info=geo_ip_lookup.geo_ip_query(ip)
 #        print(geo_info)
         if geo_info!=None:
@@ -60,8 +60,6 @@ def populate(file_name):
             rdap_insert_query="INSERT INTO rdap(ip_address, start_address, end_address, company_name, company_address) VALUES('"\
             +ip+"','','','','');" 
 #        print(rdap_insert_query)
-        count+=1
-        print(ip, count)
 #    connection_db.close()
         query_db.execute_query(rdap_insert_query, connection_db.cursor(), connection_db)
     connection_db.close()
