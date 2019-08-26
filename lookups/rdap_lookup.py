@@ -6,18 +6,18 @@ from utilities import argparser
 
 
 def rdap_query(ip_address):
-	args = argparser.input_args()
+    args = argparser.input_args()
     api_url = "https://rdap.arin.net/registry/ip/{}".format(ip_address)
     headers = {
     'accept': "application/json",
     'content-type': "application/json"}
     response = requests.get(api_url,headers=headers)
     if response.status_code >= 500:
-    	if args.debug == True:
+        if args.debug == True:
             print('[!] [{0}] Server Error'.format(response.status_code))
         return None
     elif response.status_code >= 429:
-    	if args.debug == True:
+        if args.debug == True:
             print ( '[!] [{0}] Too Many Requests'.format ( response.status_code ) )
             print ( "Using Alternative RDAP API Site" )
         alt_api_url = "https://www.rdap.net/ip/{}".format(ip_address)
@@ -25,27 +25,27 @@ def rdap_query(ip_address):
         rdap_query = json.loads ( response.content.decode ( 'utf-8' ) )
         return rdap_query
     elif response.status_code == 404:
-    	if args.debug == True:
+        if args.debug == True:
             print('[!] [{0}] URL not found: [{1}]'.format(response.status_code,api_url))
         return None
     elif response.status_code == 401:
-    	if args.debug == True:
+        if args.debug == True:
             print('[!] [{0}] Authentication Failed'.format(response.status_code))
         return None
     elif response.status_code >= 400:
-    	if args.debug == True:
+        if args.debug == True:
             print('[!] [{0}] Bad Request'.format(response.status_code))
         return None
     elif response.status_code >= 300:
-    	if args.debug == True:
+        if args.debug == True:
             print('[!] [{0}] Unexpected redirect.'.format(response.status_code))
         return None
     elif response.status_code == 200:
         rdap_query = json.loads(response.content.decode ('utf-8'))
         return rdap_query
     else:
-    	if args.debug == True:
-    	    print('[?] Unexpected Error: [HTTP {0}]: Content: {1}'.format(response.status_code, response.content))
+        if args.debug == True:
+            print('[?] Unexpected Error: [HTTP {0}]: Content: {1}'.format(response.status_code, response.content))
         return None
 #def rdap_extract(ip,query_response):
 #    temp_dict = {}
