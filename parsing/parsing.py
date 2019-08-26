@@ -17,7 +17,6 @@ def parse(ip_text):
     Description of return value
     Returns a list of all ip addresses that matches with the regex pattern. 
     """
-    # creates an arg variable, makes args attributes available within function.
     list_of_ips=re.findall('[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+', ip_text)
     return(list_of_ips)
 

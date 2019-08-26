@@ -19,8 +19,8 @@ def sql_injection(string):
     -------
     True: bool
     Description of return value
-    If sql injection was possible return boolean value of True. 
-    Otherwise, return boolean value of false.
+    If sql injection was possible return boolean value of False.. 
+    Otherwise, return boolean value of True..
 
     """
     s = [";","\"","+","*","/","%","$","--","^", "@","~","`","SELECT ", "UNION ","select", "union "]
