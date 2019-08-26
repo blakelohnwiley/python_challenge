@@ -5,12 +5,36 @@ from utilities import argparser
 # The function takes an IP address as input, will perform a GET request to freegeoip.app and parse the output as a python dictionary
 
 def geo_ip_query(ip_address):
+     """
+    Summary line.
+    Gets geolocation information about an ip address.
+    by the user. 
+
+    Parameters
+    ----------
+    ip_address : str
+    Ip address represented as a string. 
+
+    Returns
+    -------
+    query_response : dict 
+    None : None 
+    Description of return value
+    Attempts to return quuery from https://freegeoip.app/json/<ip address>.
+    If query returns nothing, then returns none. 
+    """
+    # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
+    # go to this url
     api_url  = "https://freegeoip.app/json/{}".format(ip_address)
+    # pass these headers 
     headers = {
     'accept': "application/json",
     'content-type': "application/json"}
+    # response from server with url and headers
     response = requests.get(api_url,headers=headers)
+    # below checks for varying responses from the server, to handle errors. 
+    # More information is displayed if the flag -d is passed. 
     if response.status_code >= 500:
         if args.debug == True:
             print('[!] [{0}] Server Error'.format(response.status_code))

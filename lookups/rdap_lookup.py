@@ -1,17 +1,39 @@
 import requests
 import json
 from utilities import argparser
-# This file contains the necessary functions to perform a RDAP lookup. The rdap_query function takes an IP address as input and returns a dictionary will all the retreive information.
-# Seeing as the RDAP lookup returns a lot of information, the extrat function filters this data and selects only the relevant information (the values have been chosen a bit arbitrarily and can be modified to fit the needs of the user).
 
-
+# perform the rdap query for ip address
 def rdap_query(ip_address):
+    """
+    Summary line.
+    Gets rdap information about an ip address.
+    by the user. 
+
+    Parameters
+    ----------
+    ip_address : str
+    Ip address represented as a string. 
+
+    Returns
+    -------
+    query_response : dict 
+    None : None 
+    Description of return value
+    Attempts to return quuery from https://rdap.arin.net/registry/ip/<ip address>.
+    If query returns nothing, then returns none. 
+    """
+    # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args()
+    # go to this url
     api_url = "https://rdap.arin.net/registry/ip/{}".format(ip_address)
+    # pass these headers 
     headers = {
     'accept': "application/json",
     'content-type': "application/json"}
+    # response from server with url and headers 
     response = requests.get(api_url,headers=headers)
+    # below checks for varying responses from the server, to handle errors. 
+    # More information is displayed if the flag -d is passed. 
     if response.status_code >= 500:
         if args.debug == True:
             print('[!] [{0}] Server Error'.format(response.status_code))
@@ -47,25 +69,34 @@ def rdap_query(ip_address):
         if args.debug == True:
             print('[?] Unexpected Error: [HTTP {0}]: Content: {1}'.format(response.status_code, response.content))
         return None
-#def rdap_extract(ip,query_response):
-#    temp_dict = {}
-#    temp_dict [ "startAddress" ] = query_response [ "startAddress" ]
-#    temp_dict [ 'endAddress' ] = query_response [ "endAddress" ]
-#    entities = query_response [ 'entities' ]
-#    for entry in entities:
-#        # grab value associated with vcardArray
-#        temp_dictionary = entry [ 'vcardArray' ]
-#        # iterate for values to retrieve
-#        for values in temp_dictionary:
-#            # grab nested values: company name and address
-#            # update rdap dictionary with key,value
-#            for value in values:
-#                if "fn" in value:
-#                    temp_dict [ "company_name" ] = value [ 3 ]
-#                if "adr" in value:
-#                    temp_dict [ "company_addrress" ] = value [ 1 ] [ 'label' ]
-#    return temp_dict
+
+# extract specific information from query results
 def rdap_extract(query_response):
+    """
+    Summary line.
+    Extracts specfic rdap information from rdap query.
+    by the user. 
+
+    Parameters
+    ----------
+    query_response : dict
+    Dictionary containing RDAP info of assoicated ip address. 
+
+    Returns
+    -------
+    temp_dict : dict 
+    None : None 
+    Description of return value
+    If passed a valid query response from server, then it returns 
+    temp_dict with extracted values:
+    -startAddress
+    -endAddress
+    -company_name
+    -company_address
+    Otherwise returns None. 
+
+    """
+    # attempt to extract information from rdap_query, otherwise return None.
     try:
         temp_dict = {}
         temp_dict [ "startAddress" ] = query_response [ "startAddress" ]
