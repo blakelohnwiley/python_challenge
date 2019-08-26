@@ -2,7 +2,7 @@ import argparse
 
 # allows user to pass input parameters 
 def input_args():
-    '''
+	 """
     Summary line.
     Grabs input parameters from user, if none is given then sets default values.
     by the user. 
@@ -18,7 +18,7 @@ def input_args():
     Description of return value
     Returns the input parameters as a argparser object.
 
-    '''
+    """
     # init parser, to add new arguments
     parser = argparse.ArgumentParser()
     # add debug argument
