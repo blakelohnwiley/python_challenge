@@ -1,7 +1,9 @@
 /*
-This file, when executed by MySQL will go to the swimlane database and create two tables, one to store the results of the geo ip lookup and the other to store the results of the rdap lookups.
+This file, when executed by MySQL will go to the geordap database
+and create two tables, one to store the results of the
+geo ip lookup and the other to store the results of the rdap lookups.
 */
-USE swimlane;
+USE geordap;
 create table geo_ip(
 ip_address VARCHAR(19),
 country_code VARCHAR(255),

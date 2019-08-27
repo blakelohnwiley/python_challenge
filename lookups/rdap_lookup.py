@@ -6,7 +6,7 @@ from utilities import argparser
 
 
 # perform the rdap query for ip address
-def rdap_query(ip_address):
+def rdap_query ( ip_address ):
     '''
     Summary line.
     Gets rdap information about an ip address.
@@ -26,55 +26,56 @@ def rdap_query(ip_address):
     If query returns nothing, then returns none. 
     '''
     # creates an arg variable, makes args attributes available within function.
-    args = argparser.input_args()
+    args = argparser.input_args ( )
     # go to this url
-    api_url = "https://rdap.arin.net/registry/ip/{}".format(ip_address)
+    api_url = "https://rdap.arin.net/registry/ip/{}".format ( ip_address )
     # pass these headers 
     headers = {
-    'accept': "application/json",
-    'content-type': "application/json"}
+        'accept': "application/json",
+        'content-type': "application/json"}
     # response from server with url and headers 
-    response = requests.get(api_url,headers=headers)
+    response = requests.get ( api_url, headers = headers )
     # below checks for varying responses from the server, to handle errors. 
     # More information is displayed if the flag -d is passed. 
     if response.status_code >= 500:
         if args.debug == True:
-            print('[!] [{0}] Server Error'.format(response.status_code))
+            print ( '[!] [{0}] Server Error'.format ( response.status_code ) )
         return None
     elif response.status_code >= 429:
         if args.debug == True:
             print ( '[!] [{0}] Too Many Requests'.format ( response.status_code ) )
             print ( "Using Alternative RDAP API Site" )
-        alt_api_url = "https://www.rdap.net/ip/{}".format(ip_address)
-        alt_response = requests.get(alt_api_url,headers=headers)
+        alt_api_url = "https://www.rdap.net/ip/{}".format ( ip_address )
+        alt_response = requests.get ( alt_api_url, headers = headers )
         rdap_query = json.loads ( response.content.decode ( 'utf-8' ) )
         return rdap_query
     elif response.status_code == 404:
         if args.debug == True:
-            print('[!] [{0}] URL not found: [{1}]'.format(response.status_code,api_url))
+            print ( '[!] [{0}] URL not found: [{1}]'.format ( response.status_code, api_url ) )
         return None
     elif response.status_code == 401:
         if args.debug == True:
-            print('[!] [{0}] Authentication Failed'.format(response.status_code))
+            print ( '[!] [{0}] Authentication Failed'.format ( response.status_code ) )
         return None
     elif response.status_code >= 400:
         if args.debug == True:
-            print('[!] [{0}] Bad Request'.format(response.status_code))
+            print ( '[!] [{0}] Bad Request'.format ( response.status_code ) )
         return None
     elif response.status_code >= 300:
         if args.debug == True:
-            print('[!] [{0}] Unexpected redirect.'.format(response.status_code))
+            print ( '[!] [{0}] Unexpected redirect.'.format ( response.status_code ) )
         return None
     elif response.status_code == 200:
-        rdap_query = json.loads(response.content.decode ('utf-8'))
+        rdap_query = json.loads ( response.content.decode ( 'utf-8' ) )
         return rdap_query
     else:
         if args.debug == True:
-            print('[?] Unexpected Error: [HTTP {0}]: Content: {1}'.format(response.status_code, response.content))
+            print ( '[?] Unexpected Error: [HTTP {0}]: Content: {1}'.format ( response.status_code, response.content ) )
         return None
 
+
 # extract specific information from query results
-def rdap_extract(query_response):
+def rdap_extract ( query_response ):
     '''
     Summary line.
     Extracts specfic rdap information from rdap query.

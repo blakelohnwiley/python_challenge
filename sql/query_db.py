@@ -1,5 +1,3 @@
-# This file contains all the necessary functions to interact with the database using python. By default it will connect to the database created with the cripts provided.
-
 import pymysql
 import pymysql.cursors
 
@@ -7,7 +5,7 @@ from utilities import argparser
 
 
 # meant to protect against sql injections, didn't have enough time to implement.
-def sql_injection(string):
+def sql_injection ( string ):
     '''
     Summary line.
     Test to see if sql database was vunderable to sql injections.  
@@ -25,14 +23,15 @@ def sql_injection(string):
     Otherwise, return boolean value of false.
 
     '''
-    s = [";","\"","+","*","/","%","$","--","^", "@","~","`","SELECT ", "UNION ","select", "union "]
+    s = [ ";", "\"", "+", "*", "/", "%", "$", "--", "^", "@", "~", "`", "SELECT ", "UNION ", "select", "union " ]
     for i in s:
-        if (i in str(string)):
-            return(False)
-    return(True)
+        if (i in str ( string )):
+            return (False)
+    return (True)
+
 
 # connection to database
-def connect_to_database(host='localhost', user='swimlane', password='swimlane', db='swimlane'):
+def connect_to_database ( host='localhost', user='geordap', password='geordap', db='geordap' ):
     '''
     Summary line.
     Establish a connection to the sql database.   
@@ -56,25 +55,26 @@ def connect_to_database(host='localhost', user='swimlane', password='swimlane', 
 
     '''
     # creates an arg variable, makes args attributes available within function.
-    args = argparser.input_args()
+    args = argparser.input_args ( )
     # try to connect to db
     try:
-        connection = pymysql.connect(host,
-                                     user,
-                                     password,
-                                     db,
-                                     charset='utf8mb4',
-                                     cursorclass=pymysql.cursors.DictCursor)
+        connection = pymysql.connect ( host,
+                                       user,
+                                       password,
+                                       db,
+                                       charset = 'utf8mb4',
+                                       cursorclass = pymysql.cursors.DictCursor )
         if args.debug == True:
-            print("Successfuly connected to", db, "database")
-        return(connection)
+            print ( "Successfuly connected to", db, "database" )
+        return (connection)
     # if not able to connect, let the user now. 
     except pymysql.err.OperationalError:
-        print("Unable to make a connection to the", db, "database, invalid credentials or server unreachable")
-        return(1)
+        print ( "Unable to make a connection to the", db, "database, invalid credentials or server unreachable" )
+        return (1)
+
 
 # pass along users SQL query to the database.
-def execute_query(query, cursor, connection):
+def execute_query ( query, cursor, connection ):
     '''
     Summary line.
     Execute a query from the users input and pass
@@ -95,26 +95,28 @@ def execute_query(query, cursor, connection):
     If no commit is made then, return a system exit code of 1. 
     '''
     # creates an arg variable, makes args attributes available within function.
-    args = argparser.input_args()
+    args = argparser.input_args ( )
     if args.debug == True:
-        print("Execute query :", query)
+        print ( "Execute query :", query )
     # try to execute query
     try:
         # Execute a query
-        cursor.execute(query)
+        cursor.execute ( query )
         # Commit changes to stable storage.
-        connection.commit()
+        connection.commit ( )
         # return cursor as output from function. 
-        return(cursor)
+        return (cursor)
     except:
         if args.debug == True:
-            print("Unable to execute the query, check syntax or your connection to the database")
-        return(1)
+            print ( "Unable to execute the query, check syntax or your connection to the database" )
+        return (1)
+
+
 #    else:
 #        print("Alert : sql injection attack")
 
 # query the databaes    
-def query_db(connection, query):
+def query_db ( connection, query ):
     '''
     Summary line.
     Connect to database and attempt to xecute a query from the users input. 
@@ -135,40 +137,43 @@ def query_db(connection, query):
     it returns an empty list
     '''
     # creates an arg variable, makes args attributes available within function.
-    args = argparser.input_args()
+    args = argparser.input_args ( )
     try:
         # Execute a query
-        cursor=connection.cursor()
+        cursor = connection.cursor ( )
         # calls execute_query function
-        cursor=execute_query(query, cursor, connection)
+        cursor = execute_query ( query, cursor, connection )
 
-        result=cursor.fetchall()
-        return(result)
+        result = cursor.fetchall ( )
+        return (result)
     except:
         if args.debug == True:
-            print("Unable to execute the query")
-        return(1)
+            print ( "Unable to execute the query" )
+        return (1)
 
-def main():
+
+def main ():
     # creates an arg variable, makes args attributes available within function.
-    args = argparser.input_args()
+    args = argparser.input_args ( )
     # connects to database
-    connection=connect_to_database()
+    connection = connect_to_database ( )
     # asks user which table to query
-    what_db=input("What table do you want to query ? (type geo_ip or rdap)\n")
+    what_db = input ( "What table do you want to query ? (type geo_ip or rdap)\n" )
     # describe info about table
-    describe_table="DESCRIBE "+what_db+";"
+    describe_table = "DESCRIBE " + what_db + ";"
     # try to query table for info if not tell user unable 
     try:
-        result=query_db(connection, describe_table)
-        print(result)
+        result = query_db ( connection, describe_table )
+        print ( result )
     except:
-        print("Could not execute the query, check the name of table")
-    query=input("Type in the MySQL query (be careful to end the command with a ; which is mandatoty for MySQL syntax): \n")
+        print ( "Could not execute the query, check the name of table" )
+    query = input (
+        "Type in the MySQL query (be careful to end the command with a ; which is mandatoty for MySQL syntax): \n" )
     # pass along the query and connection to database
-    query_db(connection, query)
+    query_db ( connection, query )
     # close the connection
-    connection.close()
+    connection.close ( )
 
-if __name__=="__main__":
-    main()
+
+if __name__ == "__main__":
+    main ( )
