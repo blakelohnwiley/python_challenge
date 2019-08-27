@@ -64,3 +64,11 @@ def geo_ip_query ( ip_address ):
         if args.debug == True:
             print ( '[?] Unexpected Error: [HTTP {0}]: Content: {1}'.format ( response.status_code, response.content ) )
         return None
+
+
+def main ():
+    geo_ip_query ( "8.8.8.8" )
+
+
+if __name__ == "__main__":
+    main ( )

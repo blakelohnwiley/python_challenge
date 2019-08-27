@@ -1,6 +1,5 @@
 import argparse
 
-
 # allows user to pass input parameters
 def input_args ():
     '''
@@ -32,3 +31,11 @@ def input_args ():
     result = parser.parse_args ( )
     # return result
     return result
+
+
+def main ():
+    input_args ( )
+
+
+if __name__ == "__main__":
+    main ( )

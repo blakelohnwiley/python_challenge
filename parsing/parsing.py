@@ -1,6 +1,5 @@
 import re
 
-
 # parse the text and check for regex pattern of ip address.
 def parse ( ip_text ):
     '''

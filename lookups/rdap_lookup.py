@@ -120,3 +120,12 @@ def rdap_extract ( query_response ):
         return temp_dict
     except:
         return None
+
+
+def main ():
+    query_respsone = rdap_query ( "8.8.8.8" )
+    rdap_extract ( query_respsone )
+
+
+if __name__ == "__main__":
+    main ( )

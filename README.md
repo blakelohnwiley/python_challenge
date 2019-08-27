@@ -104,9 +104,26 @@ $ mysql -u root -p < init_user.sql
 # Insert schema for tables geo_ip and rdap by runnning the follow command
 $ mysql -u geordap -p < init_db.sql
 ``` 
-# Tests 
-Describe and show how to run the tests with code examples.
-# How to USe
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+# How to Use
+## main program 
+
+```bash
+# main program without passing input parameters
+$ python3 main_program.py
+```
+
+```bash
+
+# main program passing input -f 
+$ python3 main_program.py -f "list_of_ips.txt"
+```
+
+```bash
+# main program passing input -d
+$ python3 main_program.py -d
+```
+
+
+## query program
 # License
 MIT License
