@@ -124,6 +124,10 @@ $ python3 main_program.py -f "list_of_ips.txt"
 $ python3 main_program.py -d
 ```
 ## query program
+To use the query program, just select type no when prompted with 
+```bash
+Do you want to initialize the database ? (yes/no)
+```
 This section shows how to use the querying program, accessiable before or after the database has populated. It is advised that the database is given time to populate before executing any SQL queries. 
 
 ```sql
