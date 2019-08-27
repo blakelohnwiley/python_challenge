@@ -155,6 +155,7 @@ DESCRIBE geo_ip;
 # This SQL statement displays information about the rdap table
 DESCRIBE rdap;
 ```
+To learn more about constructing SQL queries go to this link:[here](https://www.datacamp.com/community/tutorials/sql-tutorial-query)
 
 # License
 MIT License
