@@ -34,7 +34,7 @@ Create a program that will read a given set of IPs, perform Geo IP and RDAP look
     └── argparser.py
 ```
 # Screenshots 
-
+## main_program without any input paramaters
 ![](images/main-without-args.gif "Optional Title 1")
 
 ![](images/main-with-f-flag.gif "Optional Title 2 ")
