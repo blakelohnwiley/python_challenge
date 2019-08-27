@@ -126,9 +126,11 @@ $ python3 main_program.py -d
 ## query program
 To use the query program, just select type no when prompted with 
 ```bash
+# python3 main_program
 Do you want to initialize the database ? (yes/no)
 ```
-This section shows how to use the querying program, accessiable before or after the database has populated. It is advised that the database is given time to populate before executing any SQL queries. 
+
+This section shows how to use the querying program, accessible before or after the database has populated. It is advised that the database is given time to populate before executing any SQL queries. Otherwise the queries will return no results. These queries are executed and their results are printed out to the console. 
 
 ```sql
 # This SQL statement grabs all the values from the geo_ip table
