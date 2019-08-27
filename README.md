@@ -34,12 +34,21 @@ Create a program that will read a given set of IPs, perform Geo IP and RDAP look
     └── argparser.py
 ```
 # Screenshots 
-## main_program without any input paramaters
-![](images/main-without-args.gif "Optional Title 1")
-
-![](images/main-with-f-flag.gif "Optional Title 2 ")
-
-![](images/main-program-with-d-flag.gif "Optional Title 3")
+```bash
+# main program without passing input parameters
+$ python3 main_program.py
+```
+![](images/main-without-args.gif)
+```bash
+# main program passing input -f 
+$ python3 main_program.py -f "list_of_ips.txt"
+```
+![](images/main-with-f-flag.gif)
+```bash
+# main program passing input -d
+$ python3 main_program.py -d
+```
+![](images/main-program-with-d-flag.gif)
 
 # Features
 This program will read a given set of IPs, perform Geo IP and RDAP lookups, and accept a query to filter results. Each component is decoupled from the others and easy to use. There are five componenets to this application:
