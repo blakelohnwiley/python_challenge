@@ -3,33 +3,43 @@
 Create a program that will read a given set of IPs, perform Geo IP and RDAP lookups, and accept a query to filter results.
 # Structure
 ```bash
-├── data 
-│   └── list_of_ips.txt
 ├── LICENSE
+├── README.md
+├── data
+│   └── list_of_ips.txt
+├── images
+│   ├── main-program-with-d-flag.gif
+│   ├── main-with-f-flag.gif
+│   └── main-without-args.gif
 ├── lookups
+│   ├── __pycache__
 │   ├── geo_ip_lookup.py
 │   └── rdap_lookup.py
 ├── main_program.py
 ├── parsing
 │   ├── __init__.py
+│   ├── __pycache__
 │   └── parsing.py
-├── README.md
 ├── requirements.txt
 ├── sql
-│   ├── init_db.sql
 │   ├── __init__.py
+│   ├── __pycache__
+│   ├── delete_rows_from_all_tables.sql
+│   ├── init_db.sql
 │   ├── init_user.sql
 │   └── query_db.py
 └── utilities
-    ├── argparser.py
-    └── __init__.py
+    ├── __init__.py
+    ├── __pycache__
+    └── argparser.py
 ```
 # Screenshots 
-![](images/main-without-args.gif)
 
-![](images/main-with-f-flag.gif)
+![](images/main-without-args.gif "Optional Title 1")
 
-![](images/main-program-with-d-flag.gif)
+![](images/main-with-f-flag.gif "Optional Title 2 ")
+
+![](images/main-program-with-d-flag.gif "Optional Title 3")
 
 # Features
 This program will read a given set of IPs, perform Geo IP and RDAP lookups, and accept a query to filter results. Each component is decoupled from the others and easy to use. There are five componenets to this application:
