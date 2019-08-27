@@ -130,7 +130,7 @@ To use the query program, just select type no when prompted with
 Do you want to initialize the database ? (yes/no)
 ```
 
-This section shows how to use the querying program, accessible before or after the database has populated. It is advised that the database is given time to populate before executing any SQL queries. Otherwise the queries will return no results. These queries are executed and their results are printed out to the console. 
+This section shows how to use the querying program, accessible before or after the database has populated. It is advised that the database is given time to populate before executing any SQL queries. Otherwise the queries will return no results. These queries are executed and their results are printed out to the console. To leave the query program, simply just type exit. 
 
 ```sql
 # This SQL statement grabs all the values from the geo_ip table
