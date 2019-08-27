@@ -29,7 +29,7 @@ Create a program that will read a given set of IPs, perform Geo IP and RDAP look
 
 ![](images/main-with-f-flag.gif)
 
-![](main-program-with-d-flag.gif)
+![](images/main-program-with-d-flag.gif)
 
 # Features
 This program will read a given set of IPs, perform Geo IP and RDAP lookups, and accept a query to filter results. Each component is decoupled from the others and easy to use. There are five componenets to this application:
