@@ -106,7 +106,8 @@ $ mysql -u geordap -p < init_db.sql
 ``` 
 # How to Use
 ## main program 
-
+The main program when executed with or without input parameters begins the process of requesting geographic and rdap information.
+It obtains geographic and rdap information associated with each ip address. 
 ```bash
 # main program without passing input parameters
 $ python3 main_program.py
@@ -122,8 +123,24 @@ $ python3 main_program.py -f "list_of_ips.txt"
 # main program passing input -d
 $ python3 main_program.py -d
 ```
-
-
 ## query program
+This section shows how to use the querying program, accessiable before or after the database has populated. The SQL below are made with the assumption, that the database has been populated with records.
+
+```sql
+SELECT * FROM geo_ip;
+```
+
+```sql
+SELECT * FROM rdap;
+```
+
+```sql
+SELECT ip_address FROM geo_ip;
+```
+
+```sql
+SELECT ip_address FROM rdap;
+```
+
 # License
 MIT License
