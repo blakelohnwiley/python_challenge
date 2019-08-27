@@ -148,12 +148,12 @@ SELECT ip_address FROM rdap;
 
 ```sql
 # This SQL statement displays information about the geo_ip table
-DESCRIBE geo_ip; 
+DESCRIBE geo_ip;
 ```
 
 ```sql
-# This SQL statement displays information about the geo_ip table
-DESCRIBE geo_ip; 
+# This SQL statement displays information about the rdap table
+DESCRIBE rdap;
 ```
 
 # License
