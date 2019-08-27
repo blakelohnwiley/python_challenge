@@ -124,22 +124,36 @@ $ python3 main_program.py -f "list_of_ips.txt"
 $ python3 main_program.py -d
 ```
 ## query program
-This section shows how to use the querying program, accessiable before or after the database has populated. The SQL below are made with the assumption, that the database has been populated with records.
+This section shows how to use the querying program, accessiable before or after the database has populated. It is advised that the database is given time to populate before executing any SQL queries. 
 
 ```sql
-SELECT * FROM geo_ip;
+# This SQL statement grabs all the values from the geo_ip table. 
+$ SELECT * FROM geo_ip;
 ```
 
 ```sql
+# This SQL statement grabs all the values from the rdap table. 
 SELECT * FROM rdap;
 ```
 
 ```sql
+# This SQL statement grabs all ip values from the geo_ip table. 
 SELECT ip_address FROM geo_ip;
 ```
 
 ```sql
+# This SQL statement grabs all ip values from the rdap table.
 SELECT ip_address FROM rdap;
+```
+
+```sql
+# This SQL statement displays information about the geo_ip table
+DESCRIBE geo_ip; 
+```
+
+```sql
+# This SQL statement displays information about the geo_ip table
+DESCRIBE geo_ip; 
 ```
 
 # License
