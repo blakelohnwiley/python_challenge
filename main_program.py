@@ -48,7 +48,7 @@ def populate ( file_name="list_of_ips.txt" ):
     # makes a connection to the sql database
     connection_db = query_db.connect_to_database ( )
     # tells sql database to use geordap db.
-    query_db.execute_query ( "USE swimlane;", connection_db.cursor ( ), connection_db )
+    query_db.execute_query ( "USE geordap;", connection_db.cursor ( ), connection_db )
     # grabs length of list_of)ips
     len_of_list = len ( list_of_ips )
     # num_cores = multiprocessing.cpu_count ( )

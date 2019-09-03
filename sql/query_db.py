@@ -31,7 +31,7 @@ def sql_injection ( string ):
 
 
 # connection to database
-def connect_to_database ( host='localhost', user='swimlane', password='swimlane', db='swimlane' ):
+def connect_to_database ( host='localhost', user='geordap', password='geordap', db='geordap' ):
     '''
     Summary line.
     Establish a connection to the sql database.   
