@@ -1,4 +1,5 @@
 import json
+import time
 
 import requests
 
@@ -28,6 +29,7 @@ def geo_ip_query ( ip_address ):
     # creates an arg variable, makes args attributes available within function.
     args = argparser.input_args ( )
     # go to this url
+    time.sleep ( 0.1 )
     api_url = "https://freegeoip.app/json/{}".format ( ip_address )
     # pass these headers 
     headers = {
